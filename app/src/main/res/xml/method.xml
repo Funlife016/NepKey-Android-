@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<input-method xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="com.example.devanagariime.MainActivity">
+    <subtype
+        android:label="Devanagari QWERTY"
+        android:imeSubtypeLocale="ne_NP"
+        android:imeSubtypeMode="keyboard" />
+</input-method>

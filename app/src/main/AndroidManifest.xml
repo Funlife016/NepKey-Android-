@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:label="Devanagari QWERTY"
+        android:allowBackup="true">
+
+        <!-- Minimal launcher activity: just shows instructions and a
+             shortcut into system Input Method settings. Not required for
+             the IME to function, but needed so the app appears normally
+             and the user has a way to enable it. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- The actual Input Method Service. android:permission is
+             required by the system for all IMEs. -->
+        <service
+            android:name=".DevanagariIME"
+            android:label="Devanagari QWERTY"
+            android:permission="android.permission.BIND_INPUT_METHOD"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/method" />
+        </service>
+
+    </application>
+</manifest>
