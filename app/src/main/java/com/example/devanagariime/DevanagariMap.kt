@@ -2,15 +2,6 @@ package com.example.devanagariime
 
 import android.view.KeyEvent
 
-/**
- * Each entry: keyCode -> [base, shift, altGr, shiftAltGr]
- * Empty string "" means "no mapping at this level -- fall through to
- * the system default for that key" (used for plain punctuation keys
- * where we don't override every level).
- *
- * This is the ONE file you'll want to edit if you change the layout --
- * everything else in the project just reads from this map.
- */
 object DevanagariMap {
 
     val table: Map<Int, Array<String>> = mapOf(
@@ -37,9 +28,9 @@ object DevanagariMap {
         KeyEvent.KEYCODE_U to arrayOf("ु", "ू", "", ""),
         KeyEvent.KEYCODE_V to arrayOf("ड", "ढ", "", ""),
         KeyEvent.KEYCODE_W to arrayOf("व", "ऋ", "", ""),
-        KeyEvent.KEYCODE_X to arrayOf("ष", "क्ष", "", ""),      // shift = full conjunct, no workaround needed
-        KeyEvent.KEYCODE_Y to arrayOf("य", "ज्ञ", "", ""),      // shift = full conjunct
-        KeyEvent.KEYCODE_Z to arrayOf("आ", "त्र", "", ""),      // shift = full conjunct
+        KeyEvent.KEYCODE_X to arrayOf("ष", "क्ष", "", ""),
+        KeyEvent.KEYCODE_Y to arrayOf("य", "ज्ञ", "", ""),
+        KeyEvent.KEYCODE_Z to arrayOf("आ", "त्र", "", ""),
 
         KeyEvent.KEYCODE_LEFT_BRACKET  to arrayOf("इ", "ई", "[", "{"),
         KeyEvent.KEYCODE_RIGHT_BRACKET to arrayOf("ओ", "औ", "]", "}"),
@@ -48,15 +39,24 @@ object DevanagariMap {
         KeyEvent.KEYCODE_COMMA         to arrayOf(",", "।", "<", "॥"),
         KeyEvent.KEYCODE_PERIOD        to arrayOf("्", ">", ".", ""),
         KeyEvent.KEYCODE_SLASH         to arrayOf("?", "\"", "/", ""),
-        KeyEvent.KEYCODE_BACKSLASH     to arrayOf("श्र", "\\", "|", "")  // base = full conjunct
+        KeyEvent.KEYCODE_BACKSLASH     to arrayOf("श्र", "\\", "|", ""),
+
+        // Digits: base is now Devanagari (matches the rest of the layout
+        // typing Devanagari by default). Shift left empty so !@#$ etc
+        // still work exactly as before via system fallthrough. AltGr
+        // gives you the regular English digit when needed.
+        KeyEvent.KEYCODE_0 to arrayOf("०", "", "0", ""),
+        KeyEvent.KEYCODE_1 to arrayOf("१", "", "1", ""),
+        KeyEvent.KEYCODE_2 to arrayOf("२", "", "2", ""),
+        KeyEvent.KEYCODE_3 to arrayOf("३", "", "3", ""),
+        KeyEvent.KEYCODE_4 to arrayOf("४", "", "4", ""),
+        KeyEvent.KEYCODE_5 to arrayOf("५", "", "5", ""),
+        KeyEvent.KEYCODE_6 to arrayOf("६", "", "6", ""),
+        KeyEvent.KEYCODE_7 to arrayOf("७", "", "7", ""),
+        KeyEvent.KEYCODE_8 to arrayOf("८", "", "8", ""),
+        KeyEvent.KEYCODE_9 to arrayOf("९", "", "9", "")
     )
 
-    /**
-     * Returns the string to commit for this keyCode + modifier state,
-     * or null if this key isn't in our table (caller should let the
-     * event fall through to default system handling -- e.g. Enter,
-     * Backspace, arrow keys, digits, Tab, etc. are all untouched).
-     */
     fun lookup(keyCode: Int, shiftPressed: Boolean, altGrPressed: Boolean): String? {
         val entry = table[keyCode] ?: return null
         val index = when {
