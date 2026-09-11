@@ -1,14 +1,14 @@
 package com.example.devanagariime
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,9 +24,8 @@ class MainActivity : AppCompatActivity() {
                 "3. Connect your physical keyboard.\n" +
                 "4. Switch to this keyboard (long-press the spacebar in " +
                 "any text field, or use the input method switcher).\n" +
-                "5. Type using the physical keyboard -- no on-screen " +
-                "keyboard will appear, but your physical keys now " +
-                "produce Devanagari."
+                "5. Ctrl+Space toggles between Devanagari and normal " +
+                "English typing while this keyboard is active."
             textSize = 16f
         }
 
