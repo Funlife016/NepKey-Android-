@@ -1,9 +1,3 @@
-# Devanagari QWERTY -- Android IME
-
-A headless (no on-screen UI) Input Method Service that maps your Tab S10
-FE's physical keyboard to Devanagari, using the layout we designed
-together.
-
 ## How it works
 Unlike a static `.kcm` physical-keyboard layout (which, like Linux XKB,
 can only emit ONE Unicode codepoint per key+modifier), this is a real
@@ -12,17 +6,6 @@ IME service. It intercepts hardware `KeyEvent`s directly and calls
 3-codepoint conjuncts (क्ष, ज्ञ, त्र, श्र) in a single keystroke, with
 NO XCompose-style workaround needed. That's the one thing Android does
 more easily than Linux here.
-
-## To build
-1. Open this folder (`DevanagariIME/`) in Android Studio (Hedgehog or
-   newer recommended). It's a standard Gradle project -- let it sync.
-2. You'll need a launcher icon at
-   `app/src/main/res/mipmap/ic_launcher.png` (any placeholder works --
-   Android Studio's asset wizard: right-click `res` > New > Image Asset)
-   since the manifest references `@mipmap/ic_launcher`. This is the
-   only missing piece for a clean build.
-3. Build > Make Project, then Run on your Tab S10 FE (USB debugging,
-   or build an APK and sideload it).
 
 ## To use, on the tablet
 1. Open the app once (it just shows instructions + a settings shortcut).
